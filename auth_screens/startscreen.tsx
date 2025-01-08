@@ -19,7 +19,7 @@ export default function StartScreen() {
                     flexDirection: "column",
                 }}
                 source={require("../assets/startscreen.png")}
-                blurRadius={1}
+                blurRadius={2}
             >
                 <View
                     style={{
