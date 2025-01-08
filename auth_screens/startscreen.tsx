@@ -1,23 +1,52 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { ImageBackground, View } from "react-native";
+import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Button } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { RootStackNavigatorParamsList } from "../App";
 
-export default function startscreen() {
+export default function StartScreen() {
+    const navigation =
+        useNavigation<StackNavigationProp<RootStackNavigatorParamsList>>();
+
     return (
         <SafeAreaProvider>
-            <View
+            <ImageBackground
                 style={{
                     flex: 1,
-                    flexDirection: "column",
                     alignItems: "center",
+                    justifyContent: "space-evenly",
+                    flexDirection: "column",
                 }}
+                source={require("../assets/startscreen.png")}
+                blurRadius={1}
             >
-                <ImageBackground
-                    source={require("../assets/startscreen.png")}
-                    blurRadius={2}
-                ></ImageBackground>
-            </View>
+                <View
+                    style={{
+                        flexDirection: "column",
+                    }}
+                >
+                    <Text style={{ fontSize: 50 }}>MetaMission</Text>
+                </View>
+                <View
+                    style={{
+                        justifyContent: "space-evenly",
+                        height: 250,
+                        width: 300,
+                    }}
+                >
+                    <Button
+                        mode="contained"
+                        buttonColor="black"
+                        onPress={() => navigation.navigate("SignUp")}
+                    >
+                        Get Started
+                    </Button>
+                    <Button mode="contained" buttonColor="black" onPress={() => navigation.navigate("SignIn")}>
+                        Sign In
+                    </Button>
+                </View>
+            </ImageBackground>
         </SafeAreaProvider>
     );
 }
