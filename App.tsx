@@ -9,7 +9,7 @@ import SignUp from "./auth_screens/signup";
 import HomeScreen from "./auth_screens/homescreen";
 
 export type RootStackNavigatorParamsList = {
-    Startscreen: undefined;
+    StartScreen: undefined;
     SignUp: undefined;
     SignIn: undefined;
     HomeScreen: undefined;
@@ -21,9 +21,9 @@ export default function App() {
     return (
         <SafeAreaProvider>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="Startscreen">
+                <Stack.Navigator initialRouteName="StartScreen">
                     <Stack.Screen
-                        name="Startscreen"
+                        name="StartScreen"
                         component={StartScreen}
                         options={{ headerShown: false }}
                     />
