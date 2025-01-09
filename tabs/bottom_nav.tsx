@@ -28,7 +28,7 @@ export default function Bottom_Nav() {
                     tabBarLabel: "Explore",
                     tabBarLabelStyle: { fontSize: 13, color:'black' },
                     tabBarIcon: () => (
-                    <AntDesign name="user" size={24} color = 'black' />
+                    <AntDesign name="search1" size={24} color = 'black' />
                     ),
                 }}
             />
