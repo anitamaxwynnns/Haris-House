@@ -32,15 +32,6 @@ export default function ExploreScreen() {
                 source={require("../assets/startscreen.png")}
                 blurRadius={2}
             >
-                <Button
-                    style={styles.backButton}
-                    labelStyle={{ fontSize: 20 }}
-                    icon="chevron-left"
-                    textColor="black"
-                    onPress={() => navigation.goBack()}
-                >
-                    <Text style={{ fontSize: 14 }}>Back</Text>
-                </Button>
 
                 <View style={styles.container}>
                     <Text style={styles.heading}>View New Jobs</Text>
