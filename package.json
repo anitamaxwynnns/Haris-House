@@ -11,6 +11,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.4",
     "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-async-storage/root": "github:react-native-async-storage/async-storage",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
     "@react-navigation/native-stack": "^7.2.0",
@@ -21,8 +22,11 @@
     "expo-status-bar": "~2.0.0",
     "react": "18.3.1",
     "react-native": "0.76.5",
+    "react-native-gesture-handler": "^2.21.2",
+    "react-native-get-random-values": "^1.11.0",
     "react-native-paper": "^5.12.5",
-    "react-native-safe-area-context": "4.12.0",
+    "react-native-reanimated": "^3.16.6",
+    "react-native-safe-area-context": "^4.12.0",
     "react-native-screens": "~4.4.0",
     "xrpl": "^4.1.0"
   },
