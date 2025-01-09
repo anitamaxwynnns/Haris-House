@@ -7,12 +7,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import SignIn from "./auth_screens/signin";
 import SignUp from "./auth_screens/signup";
 import HomeScreen from "./auth_screens/homescreen";
+import ExploreScreen from "./auth_screens/explorescreen";
 
 export type RootStackNavigatorParamsList = {
     StartScreen: undefined;
     SignUp: undefined;
     SignIn: undefined;
     HomeScreen: undefined;
+    ExploreScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackNavigatorParamsList>();
@@ -40,6 +42,11 @@ export default function App() {
                     <Stack.Screen
                         name="HomeScreen"
                         component={HomeScreen}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="ExploreScreen"
+                        component={ExploreScreen}
                         options={{ headerShown: false }}
                     />
                 </Stack.Navigator>

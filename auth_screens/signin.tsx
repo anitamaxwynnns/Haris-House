@@ -33,7 +33,7 @@ export default function SignIn() {
             return;
         }
 
-        navigation.navigate("HomeScreen");
+        navigation.navigate("ExploreScreen");
     }
     return (
         <SafeAreaProvider>
