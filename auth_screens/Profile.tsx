@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import {
     ActivityIndicator,
     FlatList,
+    ImageBackground,
     Pressable,
     Text,
     TouchableOpacity,
@@ -121,48 +122,60 @@ export default function Profile() {
 
     return (
         <SafeAreaProvider>
-            <View
-                style={{
-                    flex: 0.2,
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
+            <ImageBackground
+                style={{flex:1}}
+                source={require("../assets/startscreen.png")}
+                blurRadius={4}
             >
-                <Text
+                <View
                     style={{
-                        alignSelf: "flex-start",
-                        marginLeft: 20,
-                        fontSize: 20,
+                        flex: 0.2,
+                        alignItems: "center",
+                        justifyContent: "center",
                     }}
                 >
-                    Name
-                </Text>
-            </View>
-            <View
-                style={{ flex: 0.6, flexDirection: "column", paddingLeft: 22 }}
-            >
-                <Text style={{ fontSize: 20 }}>Activity</Text>
-                <FlatList
-                    data={DUMMY}
-                    renderItem={renderItem}
-                    keyExtractor={(item) => item.id}
-                />
-            </View>
-            <Pressable
-                onPress={onPress}
-                style={{
-                    backgroundColor: "black",
-                    borderRadius: 20,
-                    paddingTop: 15,
-                    paddingBottom: 15,
-                    padding: 20,
-                    alignItems: "center",
-                    alignSelf: "center",
-                    flexDirection: "column",
-                }}
-            >
-                <Text style={{ color: "white", fontSize: 15 }}>Log Out</Text>
-            </Pressable>
+                    <Text
+                        style={{
+                            alignSelf: "flex-start",
+                            marginLeft: 20,
+                            fontSize: 20,
+                        }}
+                    >
+                        Name
+                    </Text>
+                </View>
+                <View
+                    style={{
+                        flex: 0.6,
+                        flexDirection: "column",
+                        paddingLeft: 22,
+                    }}
+                >
+                    <Text style={{ fontSize: 20 }}>Activity</Text>
+                    <FlatList
+                        data={DUMMY}
+                        renderItem={renderItem}
+                        keyExtractor={(item) => item.id}
+                    />
+                </View>
+                <Pressable
+                    onPress={onPress}
+                    style={{
+                        backgroundColor: "black",
+                        borderRadius: 20,
+                        paddingTop: 15,
+                        paddingBottom: 15,
+                        padding: 20,
+                        alignItems: "center",
+                        alignSelf: "center",
+                        flexDirection: "column",
+                    }}
+                >
+                    <Text style={{ color: "white", fontSize: 15 }}>
+                        Log Out
+                    </Text>
+                </Pressable>
+            </ImageBackground>
         </SafeAreaProvider>
     );
 }

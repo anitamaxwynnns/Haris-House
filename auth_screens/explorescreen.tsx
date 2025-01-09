@@ -30,7 +30,7 @@ export default function ExploreScreen() {
             <ImageBackground
                 style={styles.background}
                 source={require("../assets/startscreen.png")}
-                blurRadius={2}
+                blurRadius={4}
             >
 
                 <View style={styles.container}>
