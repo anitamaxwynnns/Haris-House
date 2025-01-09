@@ -6,7 +6,6 @@ import { Button, TextInput } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { RootStackNavigatorParamsList } from "../App";
 import { supabase } from "../supabase/supabase";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export default function SignIn() {
     const [email, setEmail] = useState("");
@@ -19,7 +18,7 @@ export default function SignIn() {
     async function signinWithEmail() {
         setLoading(true);
         const {
-            data: { session },
+            data: {session},
             error,
         } = await supabase.auth.signInWithPassword({
             email: email,
@@ -33,7 +32,7 @@ export default function SignIn() {
             return;
         }
 
-        navigation.navigate("HomeScreen");
+        navigation.navigate("Bottom_Nav");
     }
     return (
         <SafeAreaProvider>
@@ -51,7 +50,7 @@ export default function SignIn() {
                     style={{
                         alignSelf: "flex-start",
                         flex: 0.2,
-                        flexDirection:'column',
+                        flexDirection: "column",
                     }}
                     labelStyle={{ fontSize: 20 }}
                     icon="chevron-left"
@@ -60,7 +59,13 @@ export default function SignIn() {
                 >
                     <Text style={{ fontSize: 14 }}>Back</Text>
                 </Button>
-                <View style={{ justifyContent: "space-evenly", flex: 0.65, alignItems:'center',  }}>
+                <View
+                    style={{
+                        justifyContent: "space-evenly",
+                        flex: 0.65,
+                        alignItems: "center",
+                    }}
+                >
                     <TextInput
                         mode="outlined"
                         value={email}
