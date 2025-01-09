@@ -40,6 +40,11 @@ export default function App() {
                         options={{ headerShown: false }}
                     />
                     <Stack.Screen
+                        name="Profile"
+                        component={Profile}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
                         name="Bottom_Nav"
                         component={Bottom_Nav}
                         options={{ headerShown: false }}
