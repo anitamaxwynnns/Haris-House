@@ -33,7 +33,7 @@ export default function SignIn() {
             return;
         }
 
-        navigation.navigate("HomeScreen");
+        navigation.navigate("Bottom_Nav");
     }
     return (
         <SafeAreaProvider>
@@ -51,7 +51,7 @@ export default function SignIn() {
                     style={{
                         alignSelf: "flex-start",
                         flex: 0.2,
-                        flexDirection:'column',
+                        flexDirection: "column",
                     }}
                     labelStyle={{ fontSize: 20 }}
                     icon="chevron-left"
@@ -60,7 +60,13 @@ export default function SignIn() {
                 >
                     <Text style={{ fontSize: 14 }}>Back</Text>
                 </Button>
-                <View style={{ justifyContent: "space-evenly", flex: 0.65, alignItems:'center',  }}>
+                <View
+                    style={{
+                        justifyContent: "space-evenly",
+                        flex: 0.65,
+                        alignItems: "center",
+                    }}
+                >
                     <TextInput
                         mode="outlined"
                         value={email}

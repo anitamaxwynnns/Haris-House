@@ -43,7 +43,7 @@ export default function SignUp() {
             Alert.alert(error.message);
             return;
         }
-        navigation.navigate("HomeScreen");
+        navigation.navigate("Profile");
     }
 
     return (
