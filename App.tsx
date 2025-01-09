@@ -1,20 +1,20 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import StartScreen from "./auth_screens/startscreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import SignIn from "./auth_screens/signin";
 import SignUp from "./auth_screens/signup";
-import HomeScreen from "./auth_screens/homescreen";
 import ExploreScreen from "./auth_screens/explorescreen";
+import Profile from "./auth_screens/Profile";
+import Bottom_Nav from "./tabs/bottom_nav";
 
 export type RootStackNavigatorParamsList = {
     StartScreen: undefined;
     SignUp: undefined;
     SignIn: undefined;
-    HomeScreen: undefined;
     ExploreScreen: undefined;
+    Profile: undefined;
+    Bottom_Nav: undefined;
 };
 
 const Stack = createStackNavigator<RootStackNavigatorParamsList>();
@@ -40,8 +40,13 @@ export default function App() {
                         options={{ headerShown: false }}
                     />
                     <Stack.Screen
-                        name="HomeScreen"
-                        component={HomeScreen}
+                        name="Profile"
+                        component={Profile}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="Bottom_Nav"
+                        component={Bottom_Nav}
                         options={{ headerShown: false }}
                     />
                     <Stack.Screen
