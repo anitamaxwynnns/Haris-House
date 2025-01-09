@@ -35,7 +35,7 @@ export default function SignUp() {
         if (user !== null) {
             const result = await supabase
                 .from("profile")
-                .insert({ user_id: user.id, name: name });
+                .insert({ name: name, user_id: user.id });
             console.log(result);
         }
         setLoading(false);
@@ -51,18 +51,32 @@ export default function SignUp() {
             <ImageBackground
                 style={{
                     flex: 1,
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     flexDirection: "column",
                 }}
                 source={require("../assets/startscreen.png")}
-                blurRadius={1}
+                blurRadius={2}
             >
+                <Button
+                    style={{
+                        alignSelf: "flex-start",
+                        flexDirection: "row",
+                        flex: 0.2,
+                        marginTop: 70,
+                    }}
+                    labelStyle={{ fontSize: 20 }}
+                    icon="chevron-left"
+                    textColor="black"
+                    onPress={() => navigation.goBack()}
+                >
+                    <Text style={{ fontSize: 14 }}>Back</Text>
+                </Button>
                 <View
                     style={{
                         flexDirection: "column",
                         alignItems: "center",
                         justifyContent: "space-evenly",
-                        flex: 0.2,
+                        flex: 0.5,
                     }}
                 >
                     <TextInput
