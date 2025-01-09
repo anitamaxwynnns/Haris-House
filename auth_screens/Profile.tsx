@@ -1,20 +1,19 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
+    ActivityIndicator,
     FlatList,
-    Image,
-    ImageBackground,
     Pressable,
-    StyleSheet,
     Text,
     TouchableOpacity,
     View,
 } from "react-native";
-import { Button } from "react-native-paper";
+import { MD2Colors } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { supabase } from "../supabase/supabase";
 import { RootStackNavigatorParamsList } from "../App";
+import { useAuth } from "../auth/auth_provider";
 
 type DUMMYDATA = {
     id: string;
@@ -50,34 +49,70 @@ const DUMMY: DUMMYDATA[] = [
     },
 ];
 
-type ItemProps = {
-    item: DUMMYDATA;
-    backgroundColor: string;
-    textColor: string;
-    onPress: () => void;
-};
-
 export default function Profile() {
     const navigation =
         useNavigation<StackNavigationProp<RootStackNavigatorParamsList>>();
     const [user, setUser] = useState<{ name: string } | null>(null);
     const [loading, setLoading] = useState(true);
-    const [selected, setSelected] = useState("");
-    const [selectedId, setSelectedId] = useState<string>("");
+    const { session } = useAuth();
 
     const renderItem = ({ item }: { item: DUMMYDATA }) => {
         return (
             <TouchableOpacity onPress={onPress} style={{ padding: 20 }}>
-                <Text style={{ fontSize: 20, color: "black" }}>{item.Job}</Text>
                 <Text style={{ fontSize: 20, color: "black" }}>
-                    {item.Time}
+                    Job: {item.Job}
                 </Text>
-                <Text style={{ fontSize: 20, color: "black" }}>{item.Pay}</Text>
+                <Text style={{ fontSize: 20, color: "black" }}>
+                    Time: {item.Time}
+                </Text>
+                <Text style={{ fontSize: 20, color: "black" }}>
+                    Pay:{item.Pay}
+                </Text>
             </TouchableOpacity>
         );
     };
 
-    async function getUserInfo() {}
+    async function getUserInfo(): Promise<{ name: string } | null> {
+        if (!session?.user?.id) {
+            return null;
+        }
+
+        const { data, error } = await supabase
+            .from("profile")
+            .select("name")
+            .eq("user_id", session?.user.id);
+
+        if (error) {
+            console.error(error);
+            return null;
+        }
+        return data.length > 0 ? data[0] : null;
+    }
+
+    useEffect(() => {
+        let ignore = false;
+        getUserInfo().then((result) => {
+            if (!ignore) {
+                setUser(result);
+                setLoading(false);
+            }
+        });
+        return () => {
+            ignore = true;
+        };
+    });
+
+    if (loading) {
+        return (
+            <View>
+                <ActivityIndicator
+                    animating={true}
+                    color={MD2Colors.black}
+                    size={"large"}
+                />
+            </View>
+        );
+    }
 
     async function onPress() {
         await supabase.auth.signOut();
@@ -104,7 +139,7 @@ export default function Profile() {
                 </Text>
             </View>
             <View
-                style={{ flex: 0.5, flexDirection: "column", paddingLeft: 22 }}
+                style={{ flex: 0.6, flexDirection: "column", paddingLeft: 22 }}
             >
                 <Text style={{ fontSize: 20 }}>Activity</Text>
                 <FlatList

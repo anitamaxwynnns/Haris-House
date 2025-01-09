@@ -6,7 +6,6 @@ import { Button, TextInput } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { RootStackNavigatorParamsList } from "../App";
 import { supabase } from "../supabase/supabase";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export default function SignIn() {
     const [email, setEmail] = useState("");
@@ -19,7 +18,7 @@ export default function SignIn() {
     async function signinWithEmail() {
         setLoading(true);
         const {
-            data: { session },
+            data: {session},
             error,
         } = await supabase.auth.signInWithPassword({
             email: email,
