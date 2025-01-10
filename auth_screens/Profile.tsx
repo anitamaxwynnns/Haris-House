@@ -9,6 +9,7 @@ import {
     Text,
     TouchableOpacity,
     View,
+    StyleSheet,
 } from "react-native";
 import { MD2Colors } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -60,7 +61,7 @@ export default function Profile() {
     const renderItem = ({ item }: { item: DUMMYDATA }) => {
         return (
             <TouchableOpacity onPress={onPress} style={{ padding: 20 }}>
-                <Text style={{ fontSize: 20, color: "black" }}>
+                <Text style={styles.scrollItemText}>
                     Job: {item.Job}
                 </Text>
                 <Text style={{ fontSize: 20, color: "black" }}>
@@ -123,59 +124,98 @@ export default function Profile() {
     return (
         <SafeAreaProvider>
             <ImageBackground
-                style={{flex:1}}
+                style={{ flex: 1 }}
                 source={require("../assets/startscreen.png")}
                 blurRadius={4}
             >
-                <View
-                    style={{
-                        flex: 0.2,
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}
-                >
-                    <Text
+                {/* Background Container */}
+                <View style={{ flex: 1, backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
+                    {/* Name Section */}
+                    <View
                         style={{
-                            alignSelf: "flex-start",
-                            marginLeft: 20,
-                            fontSize: 20,
+                            flex: 0.2,
+                            alignItems: "center",
+                            justifyContent: "center",
                         }}
                     >
-                        Name
-                    </Text>
+                        <Text
+                            style={{
+                                alignSelf: "flex-start",
+                                marginLeft: 20,
+                                fontSize: 20,
+                                color: "#fff",
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Welcome Name!
+                        </Text>
+                    </View>
+    
+                    {/* Scrollable Activity Section */}
+                    <View style={styles.scrollContainer}>
+                        <Text style={styles.heading}>Activity</Text>
+                        <FlatList
+                            data={DUMMY}
+                            renderItem={renderItem}
+                            keyExtractor={(item) => item.id}
+                            contentContainerStyle={{ paddingBottom: 20 }}
+                        />
+                    </View>
+    
+                    {/* Logout Button */}
+                    <Pressable
+                        onPress={onPress}
+                        style={{
+                            backgroundColor: "black",
+                            borderRadius: 20,
+                            paddingTop: 15,
+                            paddingBottom: 15,
+                            padding: 20,
+                            alignItems: "center",
+                            alignSelf: "center",
+                            flexDirection: "column",
+                        }}
+                    >
+                        <Text style={{ color: "white", fontSize: 15 }}>
+                            Log Out
+                        </Text>
+                    </Pressable>
                 </View>
-                <View
-                    style={{
-                        flex: 0.6,
-                        flexDirection: "column",
-                        paddingLeft: 22,
-                    }}
-                >
-                    <Text style={{ fontSize: 20 }}>Activity</Text>
-                    <FlatList
-                        data={DUMMY}
-                        renderItem={renderItem}
-                        keyExtractor={(item) => item.id}
-                    />
-                </View>
-                <Pressable
-                    onPress={onPress}
-                    style={{
-                        backgroundColor: "black",
-                        borderRadius: 20,
-                        paddingTop: 15,
-                        paddingBottom: 15,
-                        padding: 20,
-                        alignItems: "center",
-                        alignSelf: "center",
-                        flexDirection: "column",
-                    }}
-                >
-                    <Text style={{ color: "white", fontSize: 15 }}>
-                        Log Out
-                    </Text>
-                </Pressable>
             </ImageBackground>
         </SafeAreaProvider>
     );
+    
 }
+
+const styles = StyleSheet.create({
+    container: {
+        alignItems: "center",
+        padding: 20,
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        borderRadius: 10,
+        width: "80%",
+        maxWidth: 400,
+        height: "100%",
+        maxHeight: 800,
+    },
+    heading: {
+        fontSize: 28,
+        color: "#000",
+        fontWeight: "bold",
+        marginTop: 20,
+        marginBottom: 20,
+    },
+    scrollItemText: {
+        fontSize: 16,
+        color: "#000",
+        fontWeight: "bold",
+    },
+    scrollContainer: {
+        flex: 0.6, // Adjusts the height of the container
+        backgroundColor: "#f9f9f9", // Adds a semi-transparent background
+        borderRadius: 10, // Optional: rounds the corners
+        padding: 10, // Adds space around the FlatList
+        marginHorizontal: 20, // Adds space on the left and right
+        marginVertical: 10, // Adds space above and below
+    },
+})

@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     scrollItem: {
         width: 200, // Adjust the size of each scroll item
         height: 400, // Keep the height 400px
-        backgroundColor: "#ccc",
+        backgroundColor: "#f9f9f9",
         marginRight: 10,
         overflow: "hidden",
     },
