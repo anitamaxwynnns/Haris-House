@@ -16,6 +16,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { supabase } from "../supabase/supabase";
 import { RootStackNavigatorParamsList } from "../App";
 import { useAuth } from "../auth/auth_provider";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 
 type DUMMYDATA = {
     id: string;
@@ -61,9 +62,7 @@ export default function Profile() {
     const renderItem = ({ item }: { item: DUMMYDATA }) => {
         return (
             <TouchableOpacity onPress={onPress} style={{ padding: 20 }}>
-                <Text style={styles.scrollItemText}>
-                    Job: {item.Job}
-                </Text>
+                <Text style={styles.scrollItemText}>Job: {item.Job}</Text>
                 <Text style={{ fontSize: 20, color: "black" }}>
                     Time: {item.Time}
                 </Text>
@@ -129,7 +128,9 @@ export default function Profile() {
                 blurRadius={4}
             >
                 {/* Background Container */}
-                <View style={{ flex: 1, backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
+                <View
+                    style={{ flex: 1, backgroundColor: "rgba(0, 0, 0, 0.5)", justifyContent: 'space-evenly',  }}
+                >
                     {/* Name Section */}
                     <View
                         style={{
@@ -150,41 +151,63 @@ export default function Profile() {
                             Welcome Name!
                         </Text>
                     </View>
-    
+
                     {/* Scrollable Activity Section */}
-                    <View style={styles.scrollContainer}>
-                        <Text style={styles.heading}>Activity</Text>
-                        <FlatList
-                            data={DUMMY}
-                            renderItem={renderItem}
-                            keyExtractor={(item) => item.id}
-                            contentContainerStyle={{ paddingBottom: 20 }}
-                        />
-                    </View>
-    
-                    {/* Logout Button */}
-                    <Pressable
-                        onPress={onPress}
+                    <View
                         style={{
-                            backgroundColor: "black",
-                            borderRadius: 20,
-                            paddingTop: 15,
-                            paddingBottom: 15,
-                            padding: 20,
-                            alignItems: "center",
-                            alignSelf: "center",
                             flexDirection: "column",
+                            justifyContent: "space-evenly",
+                            backgroundColor: "white",
                         }}
                     >
-                        <Text style={{ color: "white", fontSize: 15 }}>
-                            Log Out
+                        <Text
+                            style={{
+                                fontSize: 30,
+                                padding: 10,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Account Info
                         </Text>
-                    </Pressable>
+                        <View style={{ flexDirection: "row" }}>
+                            <Text style={{ padding: 10, fontSize: 20 }}>
+                                Wallet Connected: MetaMask
+                            </Text>
+                            <MaterialIcons
+                                name="verified"
+                                size={18}
+                                style={{ marginTop: 13 }}
+                            />
+                        </View>
+                        <Text style={{ padding: 10, fontSize: 20 }}>
+                            Account Balance: XXX XRP ($XXX.XXX)
+                        </Text>
+                    </View>
+
+                    {/* Logout Button */}
+                    <View style={{padding: 30}}>
+                        <Pressable
+                            onPress={onPress}
+                            style={{
+                                backgroundColor: "black",
+                                borderRadius: 20,
+                                paddingTop: 15,
+                                paddingBottom: 15,
+                                padding: 20,
+                                alignItems: "center",
+                                alignSelf: "center",
+                                flexDirection: "column",
+                            }}
+                        >
+                            <Text style={{ color: "white", fontSize: 15 }}>
+                                Log Out
+                            </Text>
+                        </Pressable>
+                    </View>
                 </View>
             </ImageBackground>
         </SafeAreaProvider>
     );
-    
 }
 
 const styles = StyleSheet.create({
@@ -211,11 +234,11 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     scrollContainer: {
-        flex: 0.6, // Adjusts the height of the container
+        flex: 0.5, // Adjusts the height of the container
         backgroundColor: "#f9f9f9", // Adds a semi-transparent background
         borderRadius: 10, // Optional: rounds the corners
         padding: 10, // Adds space around the FlatList
         marginHorizontal: 20, // Adds space on the left and right
         marginVertical: 10, // Adds space above and below
     },
-})
+});
