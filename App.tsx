@@ -7,6 +7,9 @@ import SignUp from "./auth_screens/signup";
 import ExploreScreen from "./auth_screens/explorescreen";
 import Profile from "./auth_screens/Profile";
 import Bottom_Nav from "./tabs/bottom_nav";
+import MessageScreen from "./auth_screens/messagescreen";
+import ShiftScreen from "./auth_screens/shiftscreen";
+
 
 export type RootStackNavigatorParamsList = {
     StartScreen: undefined;
@@ -15,6 +18,8 @@ export type RootStackNavigatorParamsList = {
     ExploreScreen: undefined;
     Profile: undefined;
     Bottom_Nav: undefined;
+    MessageScreen: undefined;
+    ShiftScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackNavigatorParamsList>();
@@ -52,6 +57,16 @@ export default function App() {
                     <Stack.Screen
                         name="ExploreScreen"
                         component={ExploreScreen}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="MessageScreen"
+                        component={MessageScreen}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="ShiftScreen"
+                        component={ShiftScreen}
                         options={{ headerShown: false }}
                     />
                 </Stack.Navigator>
