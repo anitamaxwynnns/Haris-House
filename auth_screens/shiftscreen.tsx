@@ -1,21 +1,51 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { ImageBackground, StyleSheet, Text, View, ScrollView} from "react-native";
+import {
+    ImageBackground,
+    StyleSheet,
+    Text,
+    View,
+    ScrollView,
+} from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { RootStackNavigatorParamsList } from "../App";
 import { useState } from "react";
 
-
 export default function ShiftScreen() {
     const activeJobs = [
-        { id: 1, role: "Cashier", location: "SuperMart, Downtown", time: "Today, 10:00 AM - 6:00 PM" },
-        { id: 2, role: "Waiter", location: "Cafe Bliss, Midtown", time: "Tomorrow, 1:00 PM - 9:00 PM" },
+        {
+            id: 1,
+            role: "Cashier",
+            location: "SuperMart, Downtown",
+            time: "Today, 10:00 AM - 6:00 PM",
+        },
+        {
+            id: 2,
+            role: "Waiter",
+            location: "Cafe Bliss, Midtown",
+            time: "Tomorrow, 1:00 PM - 9:00 PM",
+        },
     ];
 
     const completedJobs = [
-        { id: 3, role: "Barista", location: "Java Lounge, City Center", time: "Jan 5, 9:00 AM - 5:00 PM" },
-        { id: 4, role: "Warehouse Assistant", location: "StoreCo, Industrial Park", time: "Jan 3, 8:00 AM - 4:00 PM" },
-        { id: 5, role: "Sales Associate", location: "Mall Plaza, Uptown", time: "Dec 30, 10:00 AM - 6:00 PM" },
+        {
+            id: 3,
+            role: "Barista",
+            location: "Java Lounge, City Center",
+            time: "Jan 5, 9:00 AM - 5:00 PM",
+        },
+        {
+            id: 4,
+            role: "Warehouse Assistant",
+            location: "StoreCo, Industrial Park",
+            time: "Jan 3, 8:00 AM - 4:00 PM",
+        },
+        {
+            id: 5,
+            role: "Sales Associate",
+            location: "Mall Plaza, Uptown",
+            time: "Dec 30, 10:00 AM - 6:00 PM",
+        },
     ];
 
     return (
@@ -34,13 +64,21 @@ export default function ShiftScreen() {
                         {activeJobs.length > 0 ? (
                             activeJobs.map((job) => (
                                 <View key={job.id} style={styles.jobCard}>
-                                    <Text style={styles.jobRole}>{job.role}</Text>
-                                    <Text style={styles.jobLocation}>{job.location}</Text>
-                                    <Text style={styles.jobTime}>{job.time}</Text>
+                                    <Text style={styles.jobRole}>
+                                        {job.role}
+                                    </Text>
+                                    <Text style={styles.jobLocation}>
+                                        {job.location}
+                                    </Text>
+                                    <Text style={styles.jobTime}>
+                                        {job.time}
+                                    </Text>
                                 </View>
                             ))
                         ) : (
-                            <Text style={styles.noJobsText}>No active jobs at the moment.</Text>
+                            <Text style={styles.noJobsText}>
+                                No active jobs at the moment.
+                            </Text>
                         )}
                     </ScrollView>
 
@@ -50,13 +88,21 @@ export default function ShiftScreen() {
                         {completedJobs.length > 0 ? (
                             completedJobs.map((job) => (
                                 <View key={job.id} style={styles.jobCard}>
-                                    <Text style={styles.jobRole}>{job.role}</Text>
-                                    <Text style={styles.jobLocation}>{job.location}</Text>
-                                    <Text style={styles.jobTime}>{job.time}</Text>
+                                    <Text style={styles.jobRole}>
+                                        {job.role}
+                                    </Text>
+                                    <Text style={styles.jobLocation}>
+                                        {job.location}
+                                    </Text>
+                                    <Text style={styles.jobTime}>
+                                        {job.time}
+                                    </Text>
                                 </View>
                             ))
                         ) : (
-                            <Text style={styles.noJobsText}>No completed jobs to show.</Text>
+                            <Text style={styles.noJobsText}>
+                                No completed jobs to show.
+                            </Text>
                         )}
                     </ScrollView>
                 </View>
@@ -84,12 +130,14 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: "center",
         marginBottom: 20,
+        color: "white",
     },
     subheading: {
         fontSize: 20,
         fontWeight: "bold",
         marginTop: 20,
         marginBottom: 10,
+        color: "white",
     },
     section: {
         maxHeight: 200,
@@ -124,5 +172,3 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
 });
-
-
